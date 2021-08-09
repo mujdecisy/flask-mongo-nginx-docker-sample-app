@@ -1,0 +1,7 @@
+**/__pycache__/
+venv/
+**/__pytest_cache__/
+.coverage
+htmlcov/
+.env
+instance/config.yml

@@ -1,0 +1,14 @@
+MONGO:
+  host: 
+  port: 
+  username: 
+  password: 
+  database: 
+SECRET_KEY: 
+BASIC_AUTH:
+  username: 
+  password: 
+DEBUG: 
+FORMAT_LOG: 
+STANDALONE: 
+SESSION_EXPIRE: 

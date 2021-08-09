@@ -1,0 +1,35 @@
+<!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Api Docs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui.css"/>
+</head>
+
+<body>
+<div id="swagger-ui"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.47.1/swagger-ui-standalone-preset.js"></script>
+
+<script>
+var config = {
+  presets: [
+    SwaggerUIBundle.presets.apis,
+    SwaggerUIStandalonePreset
+  ],
+  plugins: [
+    SwaggerUIBundle.plugins.DownloadUrl
+  ]
+};
+
+var user_config = {{config_json|safe}};
+for (var attrname in user_config) { config[attrname] = user_config[attrname]; }
+window.onload = function() {
+  const ui = SwaggerUIBundle(config);
+  window.ui = ui;
+}
+</script>
+</body>
+</html>

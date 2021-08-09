@@ -1,0 +1,124 @@
+openapi: 3.0.1
+info:
+  title: Quick Flask App
+  description: This is quick flask app's sample swagger documentation
+  contact:
+    email: mujdecisy@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: "/api"
+tags:
+- name: admin
+  description: Administration services
+- name: user
+  description: User services
+paths:
+  /admin/User:
+    post:
+      tags:
+      - admin
+      summary: Adding user into system
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/User"
+        required: true
+      responses: {}
+      security:
+      - basic_auth: [] 
+    get:
+      tags:
+      - admin
+      summary: Getting users
+      responses: {}
+      security:
+      - basic_auth: []
+    delete:
+      tags:
+      - admin
+      summary: Delete user
+      parameters:
+      - in: query
+        name: _id
+        schema:
+          type: string
+        required: true
+      responses: {}
+      security:
+      - basic_auth: []
+  
+  /user/session:
+    post:
+      tags:
+      - user
+      summary: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/User"
+        required: true
+      responses: {}
+    delete:
+      tags:
+      - user
+      summary: Logout
+      parameters:
+      - in: query
+        name: api_key
+        schema:
+          type: string
+        required: true
+      responses: {}
+
+  /user/message:
+    post:
+      tags:
+      - user
+      summary: Send message
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/Message"
+        required: true
+      responses: {}
+      security:
+      - api_key: []
+    get:
+      tags:
+      - user
+      summary: Read message
+      responses: {}
+      security:
+      - api_key: []
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    Message:
+      type: object
+      properties:
+        receiver_id:
+          type: string
+        context:
+          type: string
+
+  securitySchemes:
+    basic_auth:
+      type: http
+      scheme: basic
+    api_key:
+      type: apiKey
+      name: x-api-key
+      in: header
