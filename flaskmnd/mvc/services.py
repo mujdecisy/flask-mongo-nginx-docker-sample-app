@@ -1,4 +1,3 @@
-from flaskmnd.daflask import DaFlask
 from flaskmnd.mvc import models, views
 from flaskmnd.util import data, exception, scope
 from flask import current_app
