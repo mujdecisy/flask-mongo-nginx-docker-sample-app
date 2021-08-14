@@ -35,6 +35,7 @@ def error_stack(message):
     current_app.logger.error(message)
 
 def configure_logger(app: Flask):
+    is_standalone = app.config["STANDALONE"]
     cus_fmtr = logging.Formatter(app.config["FORMAT_LOG"])
     level = {
             "INFO" : logging.INFO,
@@ -45,6 +46,11 @@ def configure_logger(app: Flask):
     
     app.logger.handlers.clear() # remove default handler
 
+    #-------------------------------------------------------------- GUNI HANDLER
+    if not is_standalone:
+        gunicorn_logger = logging.getLogger('gunicorn.error')
+        app.logger.handlers = gunicorn_logger.handlers
+
     #-------------------------------------------------------------- FILE HANDLER
     file_log_handler = TimedRotatingFileHandler(
         filedir.path_from_project("log", "server.log"),
@@ -53,13 +59,15 @@ def configure_logger(app: Flask):
     )
     file_log_handler.setFormatter(cus_fmtr)
     file_log_handler.setLevel(level)
+    app.logger.addHandler(file_log_handler)
 
     #------------------------------------------------------------ STREAM HANDLER
-    stream_log_handler = logging.StreamHandler(sys.stdout)
-    stream_log_handler.setFormatter(cus_fmtr)
-    stream_log_handler.setLevel(level)
+    if is_standalone:    
+        stream_log_handler = logging.StreamHandler(sys.stdout)
+        stream_log_handler.setFormatter(cus_fmtr)
+        stream_log_handler.setLevel(level)
+        app.logger.addHandler(stream_log_handler)
 
     #--------------------------------------------------------------- ROOT LOGGER
-    app.logger.addHandler(stream_log_handler)
-    app.logger.addHandler(file_log_handler)
     app.logger.setLevel(level)
+

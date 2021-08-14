@@ -4,6 +4,5 @@ venv/
 .coverage
 htmlcov/
 .env
-instance/config.yml
 .vscode/
 log/server.log*

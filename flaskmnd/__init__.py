@@ -11,9 +11,7 @@ def create_app(test_config=None):
     
     load_config(app, test_config)
     configure_logger(app)
-
-    if app.config["STANDALONE"]:
-        connect_mongo(app)
+    connect_mongo(app)
 
     app.register_blueprint(util_blueprints)
     app.register_blueprint(controller_blueprints)

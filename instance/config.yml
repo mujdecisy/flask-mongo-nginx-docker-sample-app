@@ -1,0 +1,15 @@
+MONGO:
+  host: localhost
+  port: '27017'
+  username: # mongo username
+  password: # mongo password
+  database: flaskmnd_db
+SECRET_KEY: theverysecretkey
+BASIC_AUTH:
+  username: # basic_auth username
+  password: # basic_auth password
+DEBUG: true
+FORMAT_LOG: '%(asctime)s [%(levelname)s] %(message)s'
+LEVEL_LOG: DEBUG
+STANDALONE: true
+SESSION_EXPIRE: 30

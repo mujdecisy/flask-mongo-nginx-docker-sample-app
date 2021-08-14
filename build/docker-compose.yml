@@ -1,0 +1,35 @@
+version : "3"
+
+networks :
+  danetwork :
+    driver : bridge
+
+services :
+  flaskmnd :
+    build :
+      context: ../
+      dockerfile: ./build/Dockerfile_flaskmnd
+    volumes : 
+      - "../log:/opt/log"
+    depends_on :
+      - damongo
+    networks :
+      - danetwork
+  damongo :
+    image : mongo:latest
+    environment :
+      MONGO_INITDB_ROOT_USERNAME : # mongo username
+      MONGO_INITDB_ROOT_PASSWORD : # mongo password
+    networks :
+      - danetwork
+  danginx:
+    build :
+      context : .
+      dockerfile: Dockerfile_daproxy
+    depends_on :
+      - flaskmnd
+    networks :
+      - danetwork
+    ports :
+      - "80:80"
+  
