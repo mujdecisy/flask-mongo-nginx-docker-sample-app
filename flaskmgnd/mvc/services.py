@@ -1,5 +1,5 @@
-from flaskmnd.mvc import models, views
-from flaskmnd.util import data, exception, scope
+from flaskmgnd.mvc import models, views
+from flaskmgnd.util import damongo, exception, scope
 from flask import current_app
 
 from datetime import datetime as dt, timedelta as td
@@ -88,7 +88,7 @@ def logout_user(api_key:str):
 
 
 def send_message(receiver_username:str, context:str):
-    mng: data.DaMongo = current_app.mng
+    mng: damongo.DaMongo = current_app.mng
 
     session_data = models.Session(scope.get(scope.KEY_TOKEN_ATTRIBUTES))
     sender_id = session_data.user_id
@@ -110,7 +110,7 @@ def send_message(receiver_username:str, context:str):
     return {}
 
 def read_messages():
-    mng: data.DaMongo = current_app.mng
+    mng: damongo.DaMongo = current_app.mng
 
     session_data = models.Session(scope.get(scope.KEY_TOKEN_ATTRIBUTES))
     user_id = session_data.user_id

@@ -1,10 +1,10 @@
 import yaml
 
-from flaskmnd.daflask import DaFlask
-from flaskmnd.util.data import DaMongo
-from flaskmnd.util.log import configure_logger
-from flaskmnd.util.blueprint import util_blueprints
-from flaskmnd.mvc.controllers import controller_blueprints
+from flaskmgnd.daflask import DaFlask
+from flaskmgnd.util.damongo import DaMongo
+from flaskmgnd.util.log import configure_logger
+from flaskmgnd.util.blueprint import util_blueprints
+from flaskmgnd.mvc.controllers import controller_blueprints
 
 def create_app(test_config=None):
     app = DaFlask(__name__, instance_relative_config=True)

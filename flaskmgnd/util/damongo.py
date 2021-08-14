@@ -1,4 +1,4 @@
-from flaskmnd.util.pojo import Pojo
+from flaskmgnd.util.pojo import Pojo
 from pymongo import MongoClient
 from bson import ObjectId
 

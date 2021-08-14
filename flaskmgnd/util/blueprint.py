@@ -1,5 +1,5 @@
 from flask import Blueprint, request, send_file, render_template
-from flaskmnd.util import scope, log, decorator, filedir, exception
+from flaskmgnd.util import scope, log, decorator, filedir, exception
 import os, json
 
 

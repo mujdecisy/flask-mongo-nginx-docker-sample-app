@@ -1,4 +1,4 @@
-from flaskmnd import create_app
+from flaskmgnd import create_app
 
 app = create_app()
 

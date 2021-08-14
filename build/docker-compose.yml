@@ -5,10 +5,10 @@ networks :
     driver : bridge
 
 services :
-  flaskmnd :
+  flaskmgnd :
     build :
       context: ../
-      dockerfile: ./build/Dockerfile_flaskmnd
+      dockerfile: ./build/Dockerfile_flaskmgnd
     volumes : 
       - "../log:/opt/log"
     depends_on :
@@ -27,7 +27,7 @@ services :
       context : .
       dockerfile: Dockerfile_daproxy
     depends_on :
-      - flaskmnd
+      - flaskmgnd
     networks :
       - danetwork
     ports :

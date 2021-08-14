@@ -1,6 +1,6 @@
 from flask import Blueprint, request
-from flaskmnd.util import decorator
-from flaskmnd.mvc import services
+from flaskmgnd.util import decorator
+from flaskmgnd.mvc import services
 
 
 controller_blueprints = Blueprint('controller_blueprints', __name__)

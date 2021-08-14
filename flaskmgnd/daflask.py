@@ -1,5 +1,5 @@
 from flask import Flask
-from flaskmnd.util.data import DaMongo
+from flaskmgnd.util.damongo import DaMongo
 
 class DaFlask(Flask):
     mng: DaMongo

@@ -1,5 +1,5 @@
 import unittest, yaml, os
-from flaskmnd.util.data import DaMongo
+from flaskmgnd.util.damongo import DaMongo
 
 class TestPojo(unittest.TestCase):
         

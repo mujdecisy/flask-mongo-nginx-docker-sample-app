@@ -1,5 +1,5 @@
-from flaskmnd.util.pojo import Pojo
-from flaskmnd.util.exception import FlaskRestException
+from flaskmgnd.util.pojo import Pojo
+from flaskmgnd.util.exception import FlaskRestException
 
 class Response(Pojo):
     status_code :int

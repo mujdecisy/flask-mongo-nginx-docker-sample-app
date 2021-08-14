@@ -1,6 +1,6 @@
 from flask import current_app
 from flask.app import Flask
-from flaskmnd.util import scope, filedir
+from flaskmgnd.util import scope, filedir
 from flask.logging import default_handler
 import logging, sys
 from logging.config import dictConfig

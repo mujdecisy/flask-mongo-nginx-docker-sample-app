@@ -1,4 +1,4 @@
-from flaskmnd.util.pojo import Entity
+from flaskmgnd.util.pojo import Entity
 from datetime import datetime
 
 class User(Entity):

@@ -1,6 +1,6 @@
 FROM python:3.8-slim
 
-COPY flaskmnd/ /opt/flaskmnd
+COPY flaskmgnd/ /opt/flaskmgnd
 RUN mkdir /opt/instance
 COPY instance/config_docker.yml /opt/instance/config.yml
 COPY wsgi.py /opt/wsgi.py

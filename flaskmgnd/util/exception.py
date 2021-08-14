@@ -33,10 +33,3 @@ class UnhandledException(InternalServerError):
     def __init__(self, msg: str = ""):
         self.message :str = f"UnhandledException : {msg}"
         super().__init__(self.message)
-    
-
-#---------------------------------------------------------------- APP EXCEPTIONS
-class ConfigurationError(Exception):
-    def __init__(self, msg: str = ""):
-        self.message :str = f"Configuration Missing or Wrong : {msg}"
-        super().__init__(self.message)

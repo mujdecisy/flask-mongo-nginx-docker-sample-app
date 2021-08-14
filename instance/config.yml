@@ -3,7 +3,7 @@ MONGO:
   port: '27017'
   username: admin  # mongo username
   password: '1234' # mongo password
-  database: flaskmnd_db
+  database: flaskmgnd_db
 SECRET_KEY: theverysecretkey
 BASIC_AUTH:
   username: admin  # basic_auth username

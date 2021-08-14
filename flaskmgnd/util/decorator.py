@@ -1,5 +1,5 @@
-from flaskmnd.mvc import models
-from flaskmnd.util import exception, response, log, data, scope
+from flaskmgnd.mvc import models
+from flaskmgnd.util import exception, response, log, data, scope
 
 from base64 import b64encode
 from flask import jsonify, request, current_app
