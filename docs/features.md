@@ -50,7 +50,7 @@ You can fire `FlaskRestException` from anywhere and create inherited particular 
 These exceptions are catched by the `request_handler` and transformed to the formal HTTP response.
 
 ```python
-from flaskgmnd.util.exception import NotFound
+from flaskmgnd.util.exception import NotFound
 
 fruit_stock = {
     "apple": 23,
@@ -65,7 +65,75 @@ def retrieve_stock(fruit):
 ```
 
 ## **4 . Swagger Documentation**
+You can manage your swagger documentation directly with built-in security schemas on `flaskmgnd/static/swagger.yml`. You can reach and use the swagger doc at `http://<ip|localhost>:<port>/util/swagger` easily.
+
 ## **5 . Logger Configuration**
-## **6 . Session Handling**
+Logs are configured for all run cases (flask run, gunicorn, docker) and can be tracked at `log/server.log`. The `TimedRotatingFileHandler` organises log files daily.
+
+You can use flaskmgnd.util.log module from any class you need. You can configure the logger level at `/instance/config.yml > LEVEL_LOG`, and change log format at `/instance/config.yml > FORMAT_LOG`.
+
+```python
+from flaskmgnd.util import log
+
+def foo():
+    log.debug("this is a debug log")
+    log.info("this is an info log")
+    log.error("this is an error log")
+```
+
 ## **7 . DaMongo**
+You can use mongo db over `flaskmgnd.util.damongo.DaMongo` which is attached to the flask app generated at `flaskmgnd.daflask`. DaMongo will allow you to insert, update, delete and find transactions MongoDB.
+
+It makes id transformations of objects to make easy to work on dictionary data. It is also positioned at the Flask object along application scope to avoid the wasted connection time for every request.
+
+```python
+from flask import current_app
+from flaskmgnd.util import damongo, exception
+
+def retrieve_fruit(name):
+    mongo: damongo.DaMongo = current_app.mng
+    res = mongo.select("fruit", {"name": name}, with_id=True)
+    if len(res) < 1:
+        raise exception.NotFound(f"There is no fruit founded with name : {name}")
+    return res
+```
+
 ## **8 . Pojo**
+You can use `flaskmgnd.util.pojo.Pojo` on models, views and DTOS for high complex dictionary mapping operations. Pojo can translates objects to dicts recursively and vice versa.
+
+```python
+from flaskmgnd.util.pojo import Pojo
+
+class B(Pojo):
+    ba: str
+    bb: int
+    def __init__(self, ba: str, bb: int, data:str = None, fromclass = None) -> None:
+        self.ba, self.bb = ba, bb
+        return super().__init__(data, fromclass)
+                
+class A(Pojo):
+    a: str
+    b: int
+    c: float
+    d: B
+    def __init__(self, a:str, b:int, c:float, d:B, data:str = None, fromclass = None) -> None:
+        self.a, self.b, self.c, self.d = a, b, c, d
+        return super().__init__(data, fromclass)
+
+b = B("b str", 0)
+a = A("a str", 1, 2.5, self.b)
+
+print(a.to_dict())
+
+'''
+{
+    "a" : "a str",
+    "b" : 1,
+    "c" : 2.5,
+    "d" : {
+        "ba" : "b str",
+        "bb" : 0
+    }
+}
+'''
+```
