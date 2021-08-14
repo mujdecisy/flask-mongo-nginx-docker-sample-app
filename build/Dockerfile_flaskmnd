@@ -1,9 +1,9 @@
 FROM python:3.8-slim
 
 COPY flaskmnd/ /opt/flaskmnd
-COPY instance/ /opt/instance
+RUN mkdir /opt/instance
+COPY instance/config_docker.yml /opt/instance/config.yml
 COPY wsgi.py /opt/wsgi.py
-COPY guniconf.py /opt/guniconf.py
 COPY requirements.txt /opt/requirements.txt
 
 RUN pip install -r /opt/requirements.txt
@@ -11,4 +11,4 @@ RUN mkdir /opt/log/
 
 WORKDIR /opt
 
-CMD gunicorn wsgi:app --timeout 999999 --workers 2 --config guniconf.py --pid gunicornpid --bind 0.0.0.0:5000
+CMD gunicorn wsgi:app --timeout 999999 --workers 2 --pid gunicornpid --bind 0.0.0.0:5000

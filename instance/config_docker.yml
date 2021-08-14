@@ -1,5 +1,5 @@
 MONGO:
-  host: localhost
+  host: damongo
   port: '27017'
   username: admin  # mongo username
   password: '1234' # mongo password
@@ -10,6 +10,6 @@ BASIC_AUTH:
   password: '1234' # basic_auth password
 DEBUG: true
 FORMAT_LOG: '%(asctime)s [%(levelname)s] %(message)s'
-LEVEL_LOG: DEBUG
-STANDALONE: true
+LEVEL_LOG: INFO
+STANDALONE: false
 SESSION_EXPIRE: 30

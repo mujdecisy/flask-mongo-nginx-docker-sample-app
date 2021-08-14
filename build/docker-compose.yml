@@ -18,8 +18,8 @@ services :
   damongo :
     image : mongo:latest
     environment :
-      MONGO_INITDB_ROOT_USERNAME : # mongo username
-      MONGO_INITDB_ROOT_PASSWORD : # mongo password
+      MONGO_INITDB_ROOT_USERNAME : admin  # mongo username
+      MONGO_INITDB_ROOT_PASSWORD : '1234' # mongo password
     networks :
       - danetwork
   danginx:
