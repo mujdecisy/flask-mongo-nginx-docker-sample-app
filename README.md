@@ -2,7 +2,7 @@
 
 This is a flask rest api project which is already configured for `gunicorn` and `nginx`. Also it is ready to be deployed as a `Docker` container and it works with a `MongoDB` instance, has the `Swagger` integration.
 
-You can use it as the initializer project of your simple microservices without configuration and deployment pain. You will find very useful built-in features in it. Take a look at [features](docs/features.md)!!!.
+You can use it as the initializer project of your simple microservices without configuration and deployment pain. You will find very useful built-in features in it. **Take a look at [features](docs/features.md)!!!.**
 
 ----------
 
