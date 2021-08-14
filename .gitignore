@@ -6,3 +6,5 @@ htmlcov/
 .env
 .vscode/
 log/server.log*
+build/docker-compose.yml
+instance/config.yml
